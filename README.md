@@ -1,4 +1,5 @@
 # pa1
+
 1.Give three examples of Python programs that use binary operators and/or builtins from this PA, but have different behavior than your compiler. 
    (1) pow(2,-1): In python it should equal to 1/2, but in our PA, it equals 0
                   We should make our compiler support float operation.
