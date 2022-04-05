@@ -15,7 +15,7 @@
               
      (3) pow(2,31)： In python it should return 2147483648,  but in our PA it return -2147483648
                    
-                 We could use a larger integer type in our PA
+                 We could use a larger integer type in our PA.
                    
  
 2. What resources did you find most helpful in completing the assignment?
