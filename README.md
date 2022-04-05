@@ -19,8 +19,12 @@
                    
  
 2. What resources did you find most helpful in completing the assignment?
+   
+   
    The TA video is the most helpful one! (Thanks to our responsible TA)
 
 
 3. Who (if anyone) in the class did you work with on the assignment? (See collaboration below)
+   
+   
    I work on my own.
