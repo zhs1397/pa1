@@ -11,6 +11,8 @@ type CompileResult = {
 
 export function compile(source: string) : CompileResult {
   const ast = parse(source);
+  ReferenceError(ast);
+
   const definedVars = new Set();
   ast.forEach(s => {
     switch(s.tag) {
@@ -78,3 +80,45 @@ function codeGenBinOp(op: BinOp):string{
       break;
   }
 }
+
+
+function ReferenceError(ast: Stmt[]){
+  const varArea = new Set<string> ();
+  //ast.map(checkStmt)
+  ast.forEach(s => {
+    checkStmt(s, varArea);
+  }); 
+}
+
+function checkStmt(State: Stmt, varArea: Set<string>){
+  switch (State.tag){
+    case "define":
+      checkExpr(State.value,varArea);
+      return;
+    case "expr":
+      checkExpr(State.expr,varArea);
+      return;
+  }
+}
+
+function checkExpr(expr: Expr, varArea: Set<string> ) {
+  switch(expr.tag) {
+    case "builtin1":
+      checkExpr(expr.arg,varArea);
+    return;
+    case "builtin2":
+      checkExpr(expr.arg1,varArea);
+      checkExpr(expr.arg2,varArea);
+    return;
+    case "binexpr":
+      checkExpr(expr.left,varArea);
+      checkExpr(expr.right,varArea);
+    return;
+    case "id":
+      if(!varArea.has(expr.name)) {
+      throw new Error("ReferenceError: undefined variable:" + expr.name);
+    }
+    return;
+  }
+}
+  
