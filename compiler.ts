@@ -94,6 +94,7 @@ function checkStmt(State: Stmt, varArea: Set<string>){
   switch (State.tag){
     case "define":
       checkExpr(State.value,varArea);
+      varArea.add(State.name);
       return;
     case "expr":
       checkExpr(State.expr,varArea);
@@ -114,7 +115,7 @@ function checkExpr(expr: Expr, varArea: Set<string> ) {
       checkExpr(expr.left,varArea);
       checkExpr(expr.right,varArea);
     return;
-    case "id":
+    case "id": 
       if(!varArea.has(expr.name)) {
       throw new Error("ReferenceError: undefined variable:" + expr.name);
     }
